@@ -1,0 +1,131 @@
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  /* ✅ BACKGROUND IMAGE */
+  background: 
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url("../assets/login.jpg") no-repeat center center;
+
+  background-size: cover;
+  background-attachment: fixed;
+}
+.auth-card {
+  background: rgba(155, 151, 151, 0.45); /* 👈 more transparent */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.auth-card h1 {
+  margin-bottom: 30px;
+  text-align: center;
+  color: #333;
+}
+
+.auth-card form input,
+.auth-card form select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.auth-card form button {
+  width: 100%;
+  padding: 12px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.auth-card form button:hover {
+  background: #5568d3;
+}
+
+.error {
+  color: #d32f2f;
+  text-align: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #ffebee;
+  border-radius: 5px;
+}
+
+.auth-card p {
+  text-align: center;
+  margin-top: 20px;
+  color: #050505;
+}
+
+.auth-card a {
+  color: #7087ec;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.auth-card a:hover {
+  text-decoration: underline;
+}
+
+.dashboard {
+  padding: 40px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.dashboard h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.dashboard p {
+  color: #666;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.dashboard button {
+  background: #d32f2f;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 20px;
+  transition: background 0.3s;
+}
+
+.dashboard button:hover {
+  background: #b71c1c;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  background: black; /* fallback so no white shows */
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
