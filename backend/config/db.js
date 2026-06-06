@@ -1,12 +1,12 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
+// Updated to use the Neon Cloud Connection String
 const pool = new Pool({
-  host: process.env.DB_HOST || 'localhost',
-  port: process.env.DB_PORT || 5432,
-  database: process.env.DB_NAME || 'smart_queue_db',
-  user: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASSWORD || '1234',
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 // Creates tables if they don't exist yet
@@ -26,7 +26,6 @@ const initTable = async () => {
     `);
 
     // Queue entries table
-    // Queue entries table
     await pool.query(`
       CREATE TABLE IF NOT EXISTS queue_entries (
         id SERIAL PRIMARY KEY,
@@ -43,7 +42,8 @@ const initTable = async () => {
         left_at TIMESTAMPTZ
       );
     `);
-      await pool.query(`
+
+    await pool.query(`
       ALTER TABLE queue_entries
       ADD COLUMN IF NOT EXISTS group_size INTEGER NOT NULL DEFAULT 1 CHECK (group_size >= 1 AND group_size <= 5);
     `);
@@ -52,6 +52,7 @@ const initTable = async () => {
       ALTER TABLE queue_entries
       ADD COLUMN IF NOT EXISTS selected_members JSONB DEFAULT '[]'::jsonb;
     `);
+
     // Queue indexes
     await pool.query(`
       CREATE UNIQUE INDEX IF NOT EXISTS uq_active_queue_user_per_ride
@@ -101,6 +102,7 @@ const initTable = async () => {
       END;
       $$ LANGUAGE plpgsql;
     `);
+
     await pool.query(`
     DROP TRIGGER IF EXISTS trg_update_no_of_members ON users;
     `);

@@ -2,8 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 
 export const AuthContext = createContext();
 
-const PORT = process.env.REACT_APP_BACKEND_PORT || 3000;
-const BASE_URL = `http://localhost:${PORT}`;
+const BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);

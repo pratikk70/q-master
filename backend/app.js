@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
+
+// Controllers & Routes
 const waitTimeController = require("./controllers/waitTimeController");
 const rideRoutes = require("./routes/rideRoutes");
 const adminRoutes = require("./routes/adminRoutes");
@@ -8,6 +10,8 @@ const queueRoutes = require("./routes/queueRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
 const recommendationRoutes = require("./routes/recommendationRoutes");
 const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
+
 const app = express();
 
 // Middleware
@@ -22,6 +26,7 @@ app.use("/admin", adminRoutes);
 app.use("/queue", queueRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/recommendation", recommendationRoutes);
-module.exports = app;  // NO app.listen here
-const userRoutes = require("./routes/userRoutes");
 app.use("/users", userRoutes);
+
+// Export must ALWAYS be the absolute last line
+module.exports = app;
